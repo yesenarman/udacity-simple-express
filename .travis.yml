@@ -1,0 +1,15 @@
+language: minimal
+
+services:
+  - docker
+
+script:
+  - docker --version
+  - docker build -t simple-express .
+  - docker tag simple-express yesenarman/udacity-simple-express:latest
+
+deploy:
+  provider: script
+  script: bash docker_push.sh
+  on:
+    branch: master
